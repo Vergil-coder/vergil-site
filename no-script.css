@@ -1,0 +1,9 @@
+/* Static, fully readable fallback when the visitor disables JavaScript. */
+.blind-reveal{animation:none!important;opacity:1!important;transform:none!important}
+#cover,#manifesto,#pactime,#mellowfin{height:auto!important}
+#cover>.sticky,#manifesto>.sticky,#pactime>.sticky,#mellowfin>.sticky{position:relative!important;height:auto!important;min-height:0!important;padding-top:100px;padding-bottom:64px;gap:40px}
+#cover [style],#manifesto [style],#pactime .will-change-transform{opacity:1!important;transform:none!important}
+[data-gallery-slides]{display:grid!important;gap:32px;transform:none!important}
+[data-gallery-controls]{display:none!important}
+#archive button[aria-expanded="false"]+div{grid-template-rows:1fr!important;opacity:1!important}
+#archive button{pointer-events:none}
