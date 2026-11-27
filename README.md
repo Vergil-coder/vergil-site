@@ -13,7 +13,7 @@ npm run dev
 
 ## Git 部署
 
-把源码提交到你自己的 Git 仓库，服务器 clone 后构建一次，Nginx 指向 `/opt/vergil/dist`。以后在服务器工程目录执行：
+源码仓库：[Vergil-coder/vergil-site](https://github.com/Vergil-coder/vergil-site)（私有）。服务器获得只读访问权限后 clone 并构建，Nginx 指向 `/opt/vergil/dist`。以后在服务器工程目录执行：
 
 ```bash
 npm run update
@@ -21,7 +21,7 @@ npm run update
 
 该命令只做 git pull、npm ci 和构建；不传压缩包，不给这台 Mac 添加服务器登录权限，不配置 GitHub Actions 或存储服务器密钥。
 
-首次操作见 [部署说明](docs/部署说明.md)。本轮尚未创建或连接远程仓库，也没有改动服务器。
+首次操作见 [部署说明](docs/部署说明.md)。本地已连接该私有仓库；线上服务器仍需按部署说明首次配置。
 
 ## 文件
 
