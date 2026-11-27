@@ -11,24 +11,36 @@ npm run dev
 
 构建：`npm run build`。需要 Node.js 22.12 或以上。
 
-## Git 部署
+## 静态部署
 
-源码仓库：[Vergil-coder/vergil-site](https://github.com/Vergil-coder/vergil-site)（公开）。服务器可通过 HTTPS 直接 clone 并构建，Nginx 指向 `/opt/vergil/dist`。以后在服务器工程目录执行：
+源码仓库：[Vergil-coder/vergil-site](https://github.com/Vergil-coder/vergil-site)。main 保存源码，site 保存 Mac 构建好的网页。服务器仅通过 HTTPS 拉取 site，不需要 Node.js 或 npm。
+
+Mac 提交并推送 main 后发布：
 
 ```bash
-npm run update
+npm run publish:site
 ```
 
-该命令只做 git pull、npm ci 和构建；不传压缩包，不给这台 Mac 添加服务器登录权限，不配置 GitHub Actions 或存储服务器密钥。
+服务器首次克隆：
 
-首次操作见 [部署说明](docs/部署说明.md)。本地已连接该公开仓库；线上服务器仍需按部署说明首次配置。
+```bash
+git clone --branch site --single-branch https://github.com/Vergil-coder/vergil-site.git /var/www/vergil
+```
+
+Nginx 指向 /var/www/vergil。以后服务器更新：
+
+```bash
+git -C /var/www/vergil pull --ff-only
+```
+
+首次配置和 HTTPS 说明见 [部署说明](docs/部署说明.md)。尚未操作线上服务器。
 
 ## 文件
 
 - `src/`：React 页面与内容。
 - `public/`：图片、本地字体、错误页和关闭 JS 时的阅读样式。
 - `tools/build.mjs`：静态预渲染。
-- `deploy/update.sh`：服务器 Git 更新命令。
+- `tools/publish-site.mjs`：Mac 发布静态文件到 site 分支。
 - `deploy/vergil.me.conf` / `vergil.me.https.conf`：HTTP / HTTPS 配置示例。
 - `src/data/profile.ts`：网站 ICP「粤ICP备2024281609号-2」及个人、项目资料。
 - `backups/`：本轮修改前的本地备份，不部署。
